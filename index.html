@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+        <title>Title</title>
+
+        <style>
+            html {
+                scroll-behavior: smooth;
+            }
+            .topnav {
+                float:left;
+                position: fixed;
+                font-family: Kokonor;
+                z-index: 0;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 4%;
+                align-items: center;
+                justify-content: space-between;
+                padding: 1%;
+                box-shadow: rgba(0, 0, 0, 0.1);
+            }
+            .filterbar {
+                position: fixed;
+                top: 6%;
+                height: 100%;
+                z-index: -1;
+                border-right: 1px solid lightgrey;
+            }
+
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+            }
+            li {
+                padding: 2px;
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+        <div class="topnav"> <!-- Heading -->
+            BulletinBoard
+            icon
+            searchbar
+            <a href="#Post a New Bulletin">Post a New Bulletin</a>
+            <a href="#Post a New Ad">Post an Event Flyer</a>
+
+        </div>
+
+        <div class="filterbar"> <!-- Left sidebar for filters -->
+            <ul>
+                <li>Location</li>
+                <li>
+                    <input type="checkbox" value="Homewood" id="filter-homewood"/>
+                    <label for = "filter-homewood">Homewood</label>
+                </li>
+                <li>
+                    <input type="checkbox" value="Hospital" id="filter-hospital"/>
+                    <label for = "filter-hospital">Hospital</label>
+                </li>
+                <li>
+                    <input type="checkbox" value="Medical Campus" id="filter-medcampus"/>
+                    <label for = "filter-medcampus">Medical Campus</label>
+                </li>
+                <li>
+                    <input type="checkbox" value="Off Campus" id="filter-off-campus"/>
+                    <label for = "filter-off-campus">Off-Campus Site</label>
+                </li>
+                <li>
+                    <input type="checkbox" value="Online" id="filter-online"/>
+                    <label for = "filter-online">Online</label>
+                </li>
+            </ul>
+            <br>
+
+            <ul>
+                <li>Incentive</li>
+                <li>
+                    <input type="checkbox" value="Course Credit" id="filter-credit"/>
+                    <label for = "filter-credit">Course Credit</label>
+                </li>
+                <li>
+                    <input type="checkbox" value="Pay or Gift Card" id="filter-pay"/>
+                    <label for = "filter-pay">Pay or Gift Card</label>
+                </li>
+                <li>
+                    <input type="checkbox" value="Volunteer" id="filter-volunteer"/>
+                    <label for = "filter-volunteer">Volunteer</label>
+                </li>
+                <li>
+                    <input type="checkbox" value="Other" id="filter-other-incentive"/>
+                    <label for = "filter-other-incentive">Other</label>
+                </li>
+
+            </ul>
+            <br>
+
+            <ul>
+                <li>For</li>
+                <li>
+                    <input type="checkbox" value="Research" id="filter-research"/>
+                    <label for = "filter-research">Research</label>
+                </li>
+                <li>
+                    <input type="checkbox" value="Surveys" id="filter-survey"/>
+                    <label for = "filter-survey">Surveys</label>
+                </li>
+                <li>
+                    <input type="checkbox" value="Event Setup" id="filter-setup"/>
+                    <label for = "filter-setup">Event Setup</label>
+                </li>
+                <li>
+                    <input type="checkbox" value="Other" id="filter-other-for"/>
+                    <label for = "filter-other-for">Other</label>
+                </li>
+
+            </ul>
+        </div>
+
+
+    </body>
+
+
+</html>
