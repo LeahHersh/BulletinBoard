@@ -2,35 +2,127 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
         <title>Title</title>
 
         <style>
             html {
                 scroll-behavior: smooth;
+                background-color: lavender;
+                font-family: Arial, Helvetica, sans-serif;
             }
             .topnav {
                 float:left;
                 position: fixed;
-                font-family: Kokonor;
-                z-index: 0;
+
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 4%;
                 align-items: center;
                 justify-content: space-between;
-                padding: 1%;
-                box-shadow: rgba(0, 0, 0, 0.1);
+                background-color: ghostwhite;
+                box-shadow: 0 4px 2px -2px lightgrey;
+                padding: 0.5%;
             }
             .filterbar {
                 position: fixed;
-                top: 6%;
-                height: 100%;
-                z-index: -1;
-                border-right: 1px solid lightgrey;
+                left: 0.75%;
+                top: 7.5%;
+                width: 13.25%;
+                height: 87%;
+                background-color: ghostwhite;
+                box-shadow: 3px 3px 2px -2px lightgrey;
+                padding: 1%;
+            }
+            .bulletinboard {
+                position: fixed;
+                top: 7.5%;
+                left: 17%;
+                height: 88%;
+                width: 80.5%;
+                padding: 10px;
+                border-radius: 10px;
+                background-clip: content-box;
+                box-shadow: inset 0 0 0 10px darkgrey;
+                background-color: #F6B680;
+                z-index: 0;
+            }
+            .new-bulletin-button {
+                position: fixed;
+                right: 17%;
+                border-radius: 8px;
+                padding:2px;
+                border-color: darkgrey;
+            }
+            .new-flyer-button {
+                position: fixed;
+                right: 5%;
+                border-radius: 8px;
+                padding: 2px;
+                border-color: darkgrey;
+            }
+            .posting-form {
+                display: none;
+                position: fixed;
+                left: 25%;
+                top: 5%;
+                width: 50%;
+                height: 90%;
+                margin: 5px;
+                box-shadow: 2px 2px 5px 4px rgba(0, 0, 0, 0.6);
+                border-radius: 20px;
+                background-color: white;
+                border-color: black;
+                z-index: 1;
+            }
+
+            .posts {
+                position: fixed;
+                display: none;
+                z-index: 1;
+                height: 22%;
+                aspect-ratio : 1 / 1;
+                background-color: lightgoldenrodyellow;
+                box-shadow:
+                        inset 0 25px 10px rgba(0,0,0,0.05),
+                        2px 5px 6px 5px rgba(0,0,0,0.15);
+            }
+
+            #post1 {
+                top: 12.5%;
+                left: 22%;
+            }
+            #post2 {
+                top: 12.5%;
+                left: 38%;
+            }
+            #post3 {
+                top: 12.5%;
+                left: 54%;
+            }
+            #post4 {
+                top: 41.5%;
+                left: 22%;
+            }
+            #post5 {
+                top: 41.5%;
+                left: 38%;
+            }
+            #post6 {
+                top: 41.5%;
+                left: 54%;
+            }
+            #post7 {
+                top: 70.5%;
+                left: 22%;
+            }
+            #post8 {
+                top: 70.5%;
+                left: 38%;
+            }
+            #post9 {
+                top: 70.5%;
+                left: 54%;
             }
 
             ul {
@@ -47,18 +139,100 @@
     </head>
 
     <body>
-        <div class="topnav"> <!-- Heading -->
+        <div class="topnav" id="nav"> <!-- Heading -->
             BulletinBoard
             icon
             searchbar
-            <a href="#Post a New Bulletin">Post a New Bulletin</a>
-            <a href="#Post a New Ad">Post an Event Flyer</a>
+            <button class="new-bulletin-button" onclick="openBulletinPopup()">Post a New Bulletin</button>
+            <button class="new-flyer-button" onclick="openEventPopup()">Post an Event Flyer</button>
+        </div>
+
+        <div class="posting-form" id="bulletin-form">
+
+            <form onsubmit="appendNewBulletin()">
+                <ul>
+                    <li>Location:</li>
+                    <li>
+                        <input type="checkbox" value="Homewood" id="add-homewood" onclick="addLocation('Homewood')"/>
+                        <label for = "add-homewood">Homewood</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" value="Hospital" id="add-hospital"/>
+                        <label for = "add-hospital">Hospital</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" value="Medical Campus" id="add-medcampus"/>
+                        <label for = "filter-medcampus">Medical Campus</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" value="Off Campus" id="add-off-campus"/>
+                        <label for = "filter-off-campus">Off-Campus Site</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" value="Online" id="add-online"/>
+                        <label for = "filter-online">Online</label>
+                    </li>
+                </ul>
+                <br>
+
+                <ul>
+                    <li>Incentive:</li>
+                    <li>
+                        <input type="checkbox" value="Course Credit" id="add-credit"/>
+                        <label for = "filter-credit">Course Credit</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" value="Pay or Gift Card" id="add-pay"/>
+                        <label for = "filter-pay">Pay or Gift Card</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" value="Volunteer" id="add-volunteer"/>
+                        <label for = "filter-volunteer">Volunteer</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" value="Other" id="add-other-incentive"/>
+                        <label for = "filter-other-incentive">Other</label>
+                    </li>
+
+                </ul>
+                <br>
+
+                <ul>
+                    <li>For:</li>
+                    <li>
+                        <input type="checkbox" value="Research" id="add-research"/>
+                        <label for = "filter-research">Research</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" value="Surveys" id="add-survey"/>
+                        <label for = "filter-survey">Surveys</label>
+                    </li>
+                    <li>
+                        <input type = "checkbox" value="Event Setup" id="add-setup"/>
+                        <label for = "filter-setup">Event Setup</label>
+                    </li>
+                    <li>
+                        <input type = "checkbox" value="Other" id="add-other-for"/>
+                        <label for = "filter-other-for">Other</label>
+                    </li>
+
+                </ul>
+
+                <button type="submit"> submit</button>
+            </form>
+        </div>
+
+        <div class="posting-form" id="flyer-form">
+
+
 
         </div>
 
+
+
         <div class="filterbar"> <!-- Left sidebar for filters -->
             <ul>
-                <li>Location</li>
+                <li>Location:</li>
                 <li>
                     <input type="checkbox" value="Homewood" id="filter-homewood"/>
                     <label for = "filter-homewood">Homewood</label>
@@ -66,6 +240,7 @@
                 <li>
                     <input type="checkbox" value="Hospital" id="filter-hospital"/>
                     <label for = "filter-hospital">Hospital</label>
+
                 </li>
                 <li>
                     <input type="checkbox" value="Medical Campus" id="filter-medcampus"/>
@@ -83,7 +258,7 @@
             <br>
 
             <ul>
-                <li>Incentive</li>
+                <li>Incentive:</li>
                 <li>
                     <input type="checkbox" value="Course Credit" id="filter-credit"/>
                     <label for = "filter-credit">Course Credit</label>
@@ -105,7 +280,7 @@
             <br>
 
             <ul>
-                <li>For</li>
+                <li>For:</li>
                 <li>
                     <input type="checkbox" value="Research" id="filter-research"/>
                     <label for = "filter-research">Research</label>
@@ -115,17 +290,65 @@
                     <label for = "filter-survey">Surveys</label>
                 </li>
                 <li>
-                    <input type="checkbox" value="Event Setup" id="filter-setup"/>
+                    <input type = "checkbox" value="Event Setup" id="filter-setup"/>
                     <label for = "filter-setup">Event Setup</label>
                 </li>
                 <li>
-                    <input type="checkbox" value="Other" id="filter-other-for"/>
+                    <input type = "checkbox" value="Other" id="filter-other-for"/>
                     <label for = "filter-other-for">Other</label>
                 </li>
 
             </ul>
         </div>
 
+        <div class = "bulletinboard">
+            <div class = "posts" id = post1>
+            </div>
+            <div class = "posts" id = post2>
+            </div>
+            <div class = "posts" id = post3>
+            </div>
+            <div class = "posts" id = post4>
+            </div>
+            <div class = "posts" id = post5>
+            </div>
+            <div class = "posts" id = post6>
+            </div>
+            <div class = "posts" id = post7>
+            </div>
+            <div class = "posts" id = post8>
+            </div>
+            <div class = "posts" id = post9>
+            </div>
+        </div>
+
+        <script>
+            const bulletinArray = [];
+            let newBulletin;
+
+            function openBulletinPopup() {
+                document.getElementById("bulletin-form").style.display = "block";
+            }
+
+            function closeBulletinPopup() {
+                document.getElementById("bulletin-form").style.display = "none";
+            }
+
+            function addLocation(location) {
+                document.getElementById("nav").innerHTML = 'point 1';
+                newBulletin.location = location;
+                document.getElementById("nav").innerHTML = 'point 2';
+            }
+
+            function appendNewBulletin() {
+                document.getElementById("post1").style.display = 'block';
+                if(newBulletin.location === "Homewood") {
+                    document.getElementById("post1").style.display = 'block';
+                }
+                document.getElementById("post1").style.display = 'block';
+                bulletinArray.push(newBulletin);
+            }
+        </script>
 
     </body>
 
