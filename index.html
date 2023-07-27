@@ -8,7 +8,7 @@
             html {
                 scroll-behavior: smooth;
                 background-color: lavender;
-                font-family: Arial, Helvetica, sans-serif;
+                font-family: Trebuchet MS, sans-serif;
             }
             .topnav {
                 float:left;
@@ -20,16 +20,18 @@
                 height: 4%;
                 align-items: center;
                 justify-content: space-between;
-                background-color: ghostwhite;
+                background-color: whitesmoke;
                 box-shadow: 0 4px 2px -2px lightgrey;
-                padding: 0.5%;
+                padding: 0.5% 0.5% 0.5% 2.75%;
             }
             .filterbar {
                 position: fixed;
-                left: 0.75%;
-                top: 7.5%;
-                width: 13.25%;
-                height: 87%;
+                font-size: 92%;
+                vertical-align: middle;
+                left: 1.3%;
+                top: 9%;
+                width: 11.5%;
+                height: 84.5%;
                 background-color: ghostwhite;
                 box-shadow: 3px 3px 2px -2px lightgrey;
                 padding: 1%;
@@ -37,10 +39,10 @@
             .bulletinboard {
                 position: fixed;
                 top: 7.5%;
-                left: 17%;
-                height: 88%;
-                width: 80.5%;
-                padding: 10px;
+                left: 16.2%;
+                height: 89.75%;
+                width: 82.3%;
+                padding: 5px;
                 border-radius: 10px;
                 background-clip: content-box;
                 box-shadow: inset 0 0 0 10px darkgrey;
@@ -78,14 +80,15 @@
 
             .posts {
                 position: fixed;
-                display: none;
+                display: block;
                 z-index: 1;
                 height: 22%;
                 aspect-ratio : 1 / 1;
                 background-color: lightgoldenrodyellow;
                 box-shadow:
                         inset 0 25px 10px rgba(0,0,0,0.05),
-                        2px 5px 6px 5px rgba(0,0,0,0.15);
+                        1px 3px 5px 4px rgba(0,0,0,0.15);
+
             }
 
             #post1 {
@@ -125,6 +128,7 @@
                 left: 54%;
             }
 
+
             ul {
                 list-style-type: none;
                 margin: 0;
@@ -140,20 +144,20 @@
 
     <body>
         <div class="topnav" id="nav"> <!-- Heading -->
-            BulletinBoard
-            icon
-            searchbar
+            <img src="Resources/PinIcon.jpg" alt="icon" width="130" height="21">
+
             <button class="new-bulletin-button" onclick="openBulletinPopup()">Post a New Bulletin</button>
             <button class="new-flyer-button" onclick="openEventPopup()">Post an Event Flyer</button>
         </div>
 
         <div class="posting-form" id="bulletin-form">
 
-            <form onsubmit="appendNewBulletin()">
+            <form onsubmit="return checkFormIsCompleted()">
+                <button style="top: 3%; right: 97%" onclick="closeBulletinPopup()"> x </button>
                 <ul>
                     <li>Location:</li>
                     <li>
-                        <input type="checkbox" value="Homewood" id="add-homewood" onclick="addLocation('Homewood')"/>
+                        <input type="checkbox" value="Homewood" id="add-homewood"/>
                         <label for = "add-homewood">Homewood</label>
                     </li>
                     <li>
@@ -162,15 +166,15 @@
                     </li>
                     <li>
                         <input type="checkbox" value="Medical Campus" id="add-medcampus"/>
-                        <label for = "filter-medcampus">Medical Campus</label>
+                        <label for = "add-medcampus">Medical Campus</label>
                     </li>
                     <li>
                         <input type="checkbox" value="Off Campus" id="add-off-campus"/>
-                        <label for = "filter-off-campus">Off-Campus Site</label>
+                        <label for = "add-off-campus">Off-Campus Site</label>
                     </li>
                     <li>
                         <input type="checkbox" value="Online" id="add-online"/>
-                        <label for = "filter-online">Online</label>
+                        <label for = "add-online">Online</label>
                     </li>
                 </ul>
                 <br>
@@ -179,41 +183,41 @@
                     <li>Incentive:</li>
                     <li>
                         <input type="checkbox" value="Course Credit" id="add-credit"/>
-                        <label for = "filter-credit">Course Credit</label>
+                        <label for = "add-credit">Course Credit</label>
                     </li>
                     <li>
                         <input type="checkbox" value="Pay or Gift Card" id="add-pay"/>
-                        <label for = "filter-pay">Pay or Gift Card</label>
+                        <label for = "add-pay">Pay or Gift Card</label>
                     </li>
                     <li>
                         <input type="checkbox" value="Volunteer" id="add-volunteer"/>
-                        <label for = "filter-volunteer">Volunteer</label>
+                        <label for = "add-volunteer">Volunteer</label>
                     </li>
                     <li>
                         <input type="checkbox" value="Other" id="add-other-incentive"/>
-                        <label for = "filter-other-incentive">Other</label>
+                        <label for = "add-other-incentive">Other</label>
                     </li>
 
                 </ul>
                 <br>
 
                 <ul>
-                    <li>For:</li>
+                    <li>Purpose:</li>
                     <li>
                         <input type="checkbox" value="Research" id="add-research"/>
-                        <label for = "filter-research">Research</label>
+                        <label for = "add-research">Research</label>
                     </li>
                     <li>
                         <input type="checkbox" value="Surveys" id="add-survey"/>
-                        <label for = "filter-survey">Surveys</label>
+                        <label for = "add-survey">Surveys</label>
                     </li>
                     <li>
                         <input type = "checkbox" value="Event Setup" id="add-setup"/>
-                        <label for = "filter-setup">Event Setup</label>
+                        <label for = "add-setup">Event Setup</label>
                     </li>
                     <li>
                         <input type = "checkbox" value="Other" id="add-other-for"/>
-                        <label for = "filter-other-for">Other</label>
+                        <label for = "add-other-for">Other</label>
                     </li>
 
                 </ul>
@@ -225,7 +229,6 @@
         <div class="posting-form" id="flyer-form">
 
 
-
         </div>
 
 
@@ -234,24 +237,24 @@
             <ul>
                 <li>Location:</li>
                 <li>
-                    <input type="checkbox" value="Homewood" id="filter-homewood"/>
+                    <input type="checkbox" value="Homewood" id="filter-homewood" onchange="changeLocationFilter('filter-homewood')"/>
                     <label for = "filter-homewood">Homewood</label>
                 </li>
                 <li>
-                    <input type="checkbox" value="Hospital" id="filter-hospital"/>
+                    <input type="checkbox" value="Hospital" id="filter-hospital" onchange="changeLocationFilter('filter-hospital')"/>
                     <label for = "filter-hospital">Hospital</label>
 
                 </li>
                 <li>
-                    <input type="checkbox" value="Medical Campus" id="filter-medcampus"/>
+                    <input type="checkbox" value="Medical Campus" id="filter-medcampus" onchange="changeLocationFilter('filter-medcampus')"/>
                     <label for = "filter-medcampus">Medical Campus</label>
                 </li>
                 <li>
-                    <input type="checkbox" value="Off Campus" id="filter-off-campus"/>
+                    <input type="checkbox" value="Off Campus" id="filter-off-campus" onchange="changeLocationFilter('filter-off-campus')"/>
                     <label for = "filter-off-campus">Off-Campus Site</label>
                 </li>
                 <li>
-                    <input type="checkbox" value="Online" id="filter-online"/>
+                    <input type="checkbox" value="Online" id="filter-online" onchange="changeLocationFilter('filter-online')"/>
                     <label for = "filter-online">Online</label>
                 </li>
             </ul>
@@ -260,19 +263,19 @@
             <ul>
                 <li>Incentive:</li>
                 <li>
-                    <input type="checkbox" value="Course Credit" id="filter-credit"/>
+                    <input type="checkbox" value="Course Credit" id="filter-credit" onchange="changeIncentivesFilter('filter-credit')"/>
                     <label for = "filter-credit">Course Credit</label>
                 </li>
                 <li>
-                    <input type="checkbox" value="Pay or Gift Card" id="filter-pay"/>
+                    <input type="checkbox" value="Pay or Gift Card" id="filter-pay" onchange="changeIncentivesFilter('filter-pay')"/>
                     <label for = "filter-pay">Pay or Gift Card</label>
                 </li>
                 <li>
-                    <input type="checkbox" value="Volunteer" id="filter-volunteer"/>
+                    <input type="checkbox" value="Volunteer" id="filter-volunteer" onchange="changeIncentivesFilter('filter-volunteer')"/>
                     <label for = "filter-volunteer">Volunteer</label>
                 </li>
                 <li>
-                    <input type="checkbox" value="Other" id="filter-other-incentive"/>
+                    <input type="checkbox" value="Other" id="filter-other-incentive" onchange="changeIncentivesFilter('filter-other-incentive')"/>
                     <label for = "filter-other-incentive">Other</label>
                 </li>
 
@@ -282,19 +285,19 @@
             <ul>
                 <li>For:</li>
                 <li>
-                    <input type="checkbox" value="Research" id="filter-research"/>
+                    <input type="checkbox" value="Research" id="filter-research" onchange="changePurposeFilter('filter-research')"/>
                     <label for = "filter-research">Research</label>
                 </li>
                 <li>
-                    <input type="checkbox" value="Surveys" id="filter-survey"/>
+                    <input type="checkbox" value="Surveys" id="filter-survey" onchange="changePurposeFilter('filter-survey')"/>
                     <label for = "filter-survey">Surveys</label>
                 </li>
                 <li>
-                    <input type = "checkbox" value="Event Setup" id="filter-setup"/>
+                    <input type = "checkbox" value="Event Setup" id="filter-setup" onchange="changePurposeFilter('filter-setup')"/>
                     <label for = "filter-setup">Event Setup</label>
                 </li>
                 <li>
-                    <input type = "checkbox" value="Other" id="filter-other-for"/>
+                    <input type = "checkbox" value="Other" id="filter-other-for" onchange="changePurposeFilter('filter-other-for')"/>
                     <label for = "filter-other-for">Other</label>
                 </li>
 
@@ -323,8 +326,14 @@
         </div>
 
         <script>
-            const bulletinArray = [];
-            let newBulletin;
+            var bulletinArray = [];
+            let currArray = [];
+            let currNote = 1;
+
+            // Arrays holding the current settings the user checked on the left filterbar
+            currLocations = new LinkedList();
+            currIncentives = new LinkedList();
+            currFors = new LinkedList();
 
             function openBulletinPopup() {
                 document.getElementById("bulletin-form").style.display = "block";
@@ -334,20 +343,160 @@
                 document.getElementById("bulletin-form").style.display = "none";
             }
 
-            function addLocation(location) {
-                document.getElementById("nav").innerHTML = 'point 1';
-                newBulletin.location = location;
-                document.getElementById("nav").innerHTML = 'point 2';
+            function checkFormIsCompleted() {
+                if (!(document.getElementById("add-homewood").checked || document.getElementById("add-hospital").checked
+                    || document.getElementById("add-medcampus").checked || document.getElementById("add-off-campus").checked
+                    || document.getElementById("add-online").checked)) {
+                    alert ("Please select a location, incentive, and purpose for each category. If your post " +
+                        "doesn't fall into any of our options, check 'Off-Campus Site' or 'Other.'")
+                    return false;
+                } else {
+                    appendNewBulletin();
+                }
             }
 
             function appendNewBulletin() {
-                document.getElementById("post1").style.display = 'block';
-                if(newBulletin.location === "Homewood") {
-                    document.getElementById("post1").style.display = 'block';
+                // alert("hit");
+                let bulletinLocations = new LinkedList();
+                let bulletinIncentives = new LinkedList();
+                let bulletinPurposes = new LinkedList();
+                alert("lists created");
+
+                if (document.getElementById("add-homewood").checked) {
+                    // alert("hit it");
+                    bulletinLocations.addElement("homewood");
+                    alert("hit it");
                 }
-                document.getElementById("post1").style.display = 'block';
+                // alert("hit it");
+                let newBulletin = new Bulletin(bulletinLocations, bulletinIncentives, bulletinPurposes);
                 bulletinArray.push(newBulletin);
+                bulletinArray.forEach(function(bulletin) {
+                    alert(bulletin);
+                } );
+                filter();
             }
+
+            function changeLocationFilter(filter) {
+                const decider = document.getElementById(filter);
+
+                if (decider.checked) {
+                    currLocations.addElement(filter);
+                    // alert("hit 1");
+                } else {
+                    currLocations.removeElement(filter);
+                    alert("hit 2");
+                }
+                filter();
+            }
+
+            function changeIncentivesFilter(filter) {
+                const decider = document.getElementById(filter);
+
+                if (decider.checked) {
+                    currIncentives.addElement(filter);
+                } else {
+                    currIncentives.removeElement(filter);
+                }
+                filter();
+            }
+
+            function changePurposeFilter(filter) {
+                const decider = document.getElementById(filter);
+
+                if (decider.checked) {
+                    currFors.addElement(filter);
+                } else {
+                    currFors.removeElement(filter);
+                }
+                filter();
+            }
+
+            function filter() {
+                bulletinArray.forEach(function(bulletin) {
+                    bulletin.style.display = 'none';
+                } );
+
+                bulletinArray.forEach(function(bulletin) {
+                    if(currLocations.contains(bulletin.location) || currIncentives.contains(bulletin.incentive) ||
+                        currFors.contains(bulletin.purpose)) {
+                        bulletin.style.display = 'block';
+                    }
+                } );
+            }
+
+            function Bulletin(locations, incentives, purposes) {
+                this.location = locations;
+                this.incentive = incentives;
+                this.purpose = purposes;
+            }
+
+
+            class Node {
+                constructor(element) {
+                    this.element = element;
+                    this.next = null
+                }
+            }
+            class LinkedList {
+                constructor() {
+                    alert("List reached");
+                    this.head = null;
+                }
+
+                addElement(element) {
+                    let node = new Node(element);
+                    let current;
+
+                    if (this.head == null)
+                        this.head = node;
+                    else {
+                        current = this.head;
+
+                        while (current.next) {
+                            current = current.next;
+                        }
+
+                        current.next = node;
+                    }
+                }
+
+                removeElement(element) {
+                    let current = this.head;
+                    let prev = null;
+
+                    while (current != null) {
+
+                        if (current.element === element) {
+                            if (prev == null) {
+                                this.head = current.next;
+                            } else {
+                                prev.next = current.next;
+                            }
+                            return current.element;
+                        }
+                        prev = current;
+                        current = current.next;
+                    }
+                    return -1;
+                }
+
+                contains(element) {
+                    if (this.head == null) {
+                        return false;
+                    }
+                    if (this.head === element) {
+                        return true;
+                    }
+
+                    let current = this.head;
+                    while (current !== element) {
+
+                        current = current.next;
+                    }
+                }
+
+            }
+
         </script>
 
     </body>
