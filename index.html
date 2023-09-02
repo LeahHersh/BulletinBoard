@@ -1,150 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-us">
     <head>
         <meta charset="UTF-8">
-        <title>Title</title>
-
-        <style>
-            html {
-                scroll-behavior: smooth;
-                background-color: lavender;
-                font-family: Trebuchet MS, sans-serif;
-            }
-            .topnav {
-                float:left;
-                position: fixed;
-
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 4%;
-                align-items: center;
-                justify-content: space-between;
-                background-color: whitesmoke;
-                box-shadow: 0 4px 2px -2px lightgrey;
-                padding: 0.5% 0.5% 0.5% 2.75%;
-            }
-            .filterbar {
-                position: fixed;
-                font-size: 92%;
-                vertical-align: middle;
-                left: 1.3%;
-                top: 9%;
-                width: 11.5%;
-                height: 84.5%;
-                background-color: ghostwhite;
-                box-shadow: 3px 3px 2px -2px lightgrey;
-                padding: 1%;
-            }
-            .bulletinboard {
-                position: fixed;
-                top: 7.5%;
-                left: 16.2%;
-                height: 89.75%;
-                width: 82.3%;
-                padding: 5px;
-                border-radius: 10px;
-                background-clip: content-box;
-                box-shadow: inset 0 0 0 10px darkgrey;
-                background-color: #F6B680;
-                z-index: 0;
-            }
-            .new-bulletin-button {
-                position: fixed;
-                right: 17%;
-                border-radius: 8px;
-                padding:2px;
-                border-color: darkgrey;
-            }
-            .new-flyer-button {
-                position: fixed;
-                right: 5%;
-                border-radius: 8px;
-                padding: 2px;
-                border-color: darkgrey;
-            }
-            .posting-form {
-                display: none;
-                position: fixed;
-                left: 25%;
-                top: 5%;
-                width: 50%;
-                height: 90%;
-                margin: 5px;
-                box-shadow: 2px 2px 5px 4px rgba(0, 0, 0, 0.6);
-                border-radius: 20px;
-                background-color: white;
-                border-color: black;
-                z-index: 1;
-            }
-
-            .posts {
-                position: fixed;
-                display: block;
-                z-index: 1;
-                height: 22%;
-                aspect-ratio : 1 / 1;
-                background-color: lightgoldenrodyellow;
-                box-shadow:
-                        inset 0 25px 10px rgba(0,0,0,0.05),
-                        1px 3px 5px 4px rgba(0,0,0,0.15);
-
-            }
-
-            #post1 {
-                top: 12.5%;
-                left: 22%;
-            }
-            #post2 {
-                top: 12.5%;
-                left: 38%;
-            }
-            #post3 {
-                top: 12.5%;
-                left: 54%;
-            }
-            #post4 {
-                top: 41.5%;
-                left: 22%;
-            }
-            #post5 {
-                top: 41.5%;
-                left: 38%;
-            }
-            #post6 {
-                top: 41.5%;
-                left: 54%;
-            }
-            #post7 {
-                top: 70.5%;
-                left: 22%;
-            }
-            #post8 {
-                top: 70.5%;
-                left: 38%;
-            }
-            #post9 {
-                top: 70.5%;
-                left: 54%;
-            }
-
-
-            ul {
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
-            }
-            li {
-                padding: 2px;
-            }
-
-        </style>
-
+        <title>BulletinBoard</title>
+        <link href="index.css" rel="stylesheet" />
     </head>
 
     <body>
         <div class="topnav" id="nav"> <!-- Heading -->
-            <img src="Resources/PinIcon.jpg" alt="icon" width="130" height="21">
+            <img src="Resources/PinIcon.jpg" alt="icon" width="133.9" height="21.63">
 
             <button class="new-bulletin-button" onclick="openBulletinPopup()">Post a New Bulletin</button>
             <button class="new-flyer-button" onclick="openEventPopup()">Post an Event Flyer</button>
@@ -153,7 +17,7 @@
         <div class="posting-form" id="bulletin-form">
 
             <form onsubmit="return checkFormIsCompleted()">
-                <button style="top: 3%; right: 97%" onclick="closeBulletinPopup()"> x </button>
+                <button class = "posting-form-button" onclick="closeBulletinPopup()"> x </button>
                 <ul>
                     <li>Location:</li>
                     <li>
@@ -323,182 +187,23 @@
             </div>
             <div class = "posts" id = post9>
             </div>
+            <div class = "ad" id = ad1>
+                Changing Event Ads
+            </div>
+            <div class = "ad" id = ad2>
+                Changing Event Ads
+            </div>
+            <img class = "tape" id = tape1 src="Resources/tape.png" alt = "tape" width = "64" height ="62">
+            <img class = "tape" id = tape2 src="Resources/tape.png" alt = "tape" width = "64" height ="62">
+            <img class = "tape" id = tape3 src="Resources/tape.png" alt = "tape" width = "64" height ="62">
+            <img class = "tape" id = tape4 src="Resources/tape.png" alt = "tape" width = "64" height ="62">
+            <img class = "tape" id = tape5 src="Resources/tape.png" alt = "tape" width = "64" height ="62">
+            <img class = "tape" id = tape6 src="Resources/tape.png" alt = "tape" width = "64" height ="62">
+            <img class = "tape" id = tape7 src="Resources/tape.png" alt = "tape" width = "64" height ="62">
+            <img class = "tape" id = tape8 src="Resources/tape.png" alt = "tape" width = "64" height ="62">
         </div>
 
-        <script>
-            var bulletinArray = [];
-            let currArray = [];
-            let currNote = 1;
-
-            // Arrays holding the current settings the user checked on the left filterbar
-            currLocations = new LinkedList();
-            currIncentives = new LinkedList();
-            currFors = new LinkedList();
-
-            function openBulletinPopup() {
-                document.getElementById("bulletin-form").style.display = "block";
-            }
-
-            function closeBulletinPopup() {
-                document.getElementById("bulletin-form").style.display = "none";
-            }
-
-            function checkFormIsCompleted() {
-                if (!(document.getElementById("add-homewood").checked || document.getElementById("add-hospital").checked
-                    || document.getElementById("add-medcampus").checked || document.getElementById("add-off-campus").checked
-                    || document.getElementById("add-online").checked)) {
-                    alert ("Please select a location, incentive, and purpose for each category. If your post " +
-                        "doesn't fall into any of our options, check 'Off-Campus Site' or 'Other.'")
-                    return false;
-                } else {
-                    appendNewBulletin();
-                }
-            }
-
-            function appendNewBulletin() {
-                // alert("hit");
-                let bulletinLocations = new LinkedList();
-                let bulletinIncentives = new LinkedList();
-                let bulletinPurposes = new LinkedList();
-                alert("lists created");
-
-                if (document.getElementById("add-homewood").checked) {
-                    // alert("hit it");
-                    bulletinLocations.addElement("homewood");
-                    alert("hit it");
-                }
-                // alert("hit it");
-                let newBulletin = new Bulletin(bulletinLocations, bulletinIncentives, bulletinPurposes);
-                bulletinArray.push(newBulletin);
-                bulletinArray.forEach(function(bulletin) {
-                    alert(bulletin);
-                } );
-                filter();
-            }
-
-            function changeLocationFilter(filter) {
-                const decider = document.getElementById(filter);
-
-                if (decider.checked) {
-                    currLocations.addElement(filter);
-                    // alert("hit 1");
-                } else {
-                    currLocations.removeElement(filter);
-                    alert("hit 2");
-                }
-                filter();
-            }
-
-            function changeIncentivesFilter(filter) {
-                const decider = document.getElementById(filter);
-
-                if (decider.checked) {
-                    currIncentives.addElement(filter);
-                } else {
-                    currIncentives.removeElement(filter);
-                }
-                filter();
-            }
-
-            function changePurposeFilter(filter) {
-                const decider = document.getElementById(filter);
-
-                if (decider.checked) {
-                    currFors.addElement(filter);
-                } else {
-                    currFors.removeElement(filter);
-                }
-                filter();
-            }
-
-            function filter() {
-                bulletinArray.forEach(function(bulletin) {
-                    bulletin.style.display = 'none';
-                } );
-
-                bulletinArray.forEach(function(bulletin) {
-                    if(currLocations.contains(bulletin.location) || currIncentives.contains(bulletin.incentive) ||
-                        currFors.contains(bulletin.purpose)) {
-                        bulletin.style.display = 'block';
-                    }
-                } );
-            }
-
-            function Bulletin(locations, incentives, purposes) {
-                this.location = locations;
-                this.incentive = incentives;
-                this.purpose = purposes;
-            }
-
-
-            class Node {
-                constructor(element) {
-                    this.element = element;
-                    this.next = null
-                }
-            }
-            class LinkedList {
-                constructor() {
-                    alert("List reached");
-                    this.head = null;
-                }
-
-                addElement(element) {
-                    let node = new Node(element);
-                    let current;
-
-                    if (this.head == null)
-                        this.head = node;
-                    else {
-                        current = this.head;
-
-                        while (current.next) {
-                            current = current.next;
-                        }
-
-                        current.next = node;
-                    }
-                }
-
-                removeElement(element) {
-                    let current = this.head;
-                    let prev = null;
-
-                    while (current != null) {
-
-                        if (current.element === element) {
-                            if (prev == null) {
-                                this.head = current.next;
-                            } else {
-                                prev.next = current.next;
-                            }
-                            return current.element;
-                        }
-                        prev = current;
-                        current = current.next;
-                    }
-                    return -1;
-                }
-
-                contains(element) {
-                    if (this.head == null) {
-                        return false;
-                    }
-                    if (this.head === element) {
-                        return true;
-                    }
-
-                    let current = this.head;
-                    while (current !== element) {
-
-                        current = current.next;
-                    }
-                }
-
-            }
-
-        </script>
-
+        <script src="index.js"></script>
     </body>
 
 
